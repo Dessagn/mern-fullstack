@@ -1,6 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
+const users = require('./routes/api/users')
+const profile = require('./routes/api/profile')
+const posts = require('./routes/api/posts')
+
 //create express app
 const app = express();
 //configure db source
@@ -17,6 +21,11 @@ mongoose
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+// Use routes
+app.use('/api/users', users)
+app.use('/api/profile', profile)
+app.use('/api/posts', posts)
 
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`)
